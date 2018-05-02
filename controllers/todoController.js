@@ -9,8 +9,7 @@ let client = require('smartsheet')
 let smartsheet = client.createClient({ accessToken: config.SMARTSHEET_ACCESS_TOKEN})
 let sheetId = config.SHEET_ID
 
-let data = [{item: 'Get Milk'}, {item: 'Work on Smartsheet app'}, {item: 'Walk Basil'}]
-
+// constructor function to create each 'ToDo'
 const ToDo = function (id, task, status, dueDate) {
   this.id = id
   this.toDoText = task
