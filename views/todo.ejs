@@ -3,13 +3,15 @@
     <title>To Do List</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="/assets/styles.css" rel="stylesheet" type="text/css"/>
-    <script src="/assets/todo-list.js"></script>
+    <!-- <script src="/assets/todo-list.js"></script> -->
   </head>
   <body>
-    <h1>To Do App</h1>
+    <header>
+      <h1>To Do App</h1>
+    </header>
     <div class="todo-table">
       <h3>Add New Task</h3>
-      <form>
+      <form id="new-task-form">
         <!-- <input type="text" name="item" placeholder="Add new item..." required />
         <button type="submit">Add Item</button> -->
             <div class="form-group">
@@ -24,7 +26,7 @@
               <label for="task-duedate-input">Due Date</label>
               <input type="date" class="form-control" id="task-duedate-input" placeholder="Enter due date">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Add Task</button>
           </form>
       <!-- <ul>
         <% for(let i=0; i < todos.length; i++) { %>
@@ -52,8 +54,9 @@
         </tbody>
       </table>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="/assets/todo-list.js"></script>
   </body>
 </html>

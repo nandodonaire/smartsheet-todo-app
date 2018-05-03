@@ -32,7 +32,7 @@ module.exports = function (app) {
         let task = new ToDo (row.id, row.cells[0].value, row.cells[1].value, row.cells[2].value)
         sheetRows.push(task)
       })
-      console.log(sheetRows);
+      // console.log(sheetRows);
       res.render('todo', {todos: sheetRows})
     })
     .catch(function(error) {
