@@ -41,9 +41,41 @@ module.exports = function (app) {
   })
 
   app.post('/todo', urlencodedParser, function (req, res) {
-    data.push(req.body)
-    res.json(data)
-  })
+    // data.push(req.body)
+    // res.json(data)
+    let row = [
+      {
+        "toTop": true,
+        "cells": [
+          {
+            "columnId": config.TEXT_COLUMN_ID,
+            "value": req.body.toDoText
+          },
+          {
+            "columnId": config.STATUS_COLUMN_ID,
+            "value": req.body.status,
+          },
+          {
+            "columnId": config.DUEDATE_COLUMN_ID,
+            "value": req.body.dueDate,
+          }
+        ]
+      }
+    ]
+      let options = {
+        sheetId: config.SHEET_ID,
+        body: row
+      }
+      smartsheet.sheets.addRows(options)
+        .then(function(newRow) {
+          // console.log(newRow)
+          let task = new ToDo (newRow.result[0].id, newRow.result[0].cells[0].value, newRow.result[0].cells[1].value, newRow.result[0].cells[2].value)
+          res.status(200).send(task)
+        })
+        .catch(function(error) {
+          console.log(error);
+        })
+    })
 
   app.delete('/todo/:item', function (req, res) {
     data = data.filter(function(todo) {
