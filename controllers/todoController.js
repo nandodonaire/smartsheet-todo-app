@@ -94,6 +94,7 @@ module.exports = function (app) {
     smartsheet.sheets.deleteRow(options)
       .then(function(results) {
         console.log(results)
+        res.status(200).send('Successfully deleted row!')
       })
       .catch(function(error) {
         console.log(error);

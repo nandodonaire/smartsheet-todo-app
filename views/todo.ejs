@@ -20,7 +20,11 @@
             </div>
             <div class="form-group">
               <label for="task-status-input">Status</label>
-              <input type="text" class="form-control" id="task-status-input" placeholder="Enter status">
+              <!-- <input type="text" class="form-control" id="task-status-input" placeholder="Enter status"> -->
+                <select class="form-control" name="todo[status]" id="task-status-input">
+                  <option>Not Done</option>
+                  <option>Done</option>
+                </select>
             </div>
             <div class="form-group">
               <label for="task-duedate-input">Due Date</label>
