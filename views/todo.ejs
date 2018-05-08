@@ -41,16 +41,29 @@
             <th scope="col">Task Name</th>
             <th scope="col">Status</th>
             <th scope="col">Due Date</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
           </tr>
         </thead>
         <tbody>
-          <% for(let i=0; i < todos.length; i++) { %>
-          <tr>
+          <!-- <% for(let i=0; i < todos.length; i++) { %>
+          <tr class='task-row'>
             <td><%= todos[i].toDoText %></td>
             <td><%= todos[i].status %></td>
             <td><%= todos[i].dueDate %></td>
+            <td><button type="button" class="btn btn-warning action-button">Edit</button></td>
+            <td><button data-row-id="<%= todos[i].id %>" id='delete-button' type="button" class="btn btn-danger action-button">Delete</button></td>
           </tr>
-          <% } %>
+          <% } %> -->
+          <% todos.forEach(function(todo) { %>
+          <tr class='task-row'>
+            <td><%= todo.toDoText %></td>
+            <td><%= todo.status %></td>
+            <td><%= todo.dueDate %></td>
+            <td><button type="button" class="btn btn-warning action-button">Edit</button></td>
+            <td><button data-row-id="<%= todo.id %>" id='delete-button' type="button" class="btn btn-danger action-button delete-button">Delete</button></td>
+          </tr>
+          <% }) %>
         </tbody>
       </table>
     </div>

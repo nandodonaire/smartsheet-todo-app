@@ -77,10 +77,26 @@ module.exports = function (app) {
         })
     })
 
-  app.delete('/todo/:item', function (req, res) {
-    data = data.filter(function(todo) {
-      return todo.item.replace(/ /g, '-') !== req.params.item
-    })
-    res.json(data)
+  app.delete('/todo/:item', urlencodedParser, function (req, res) {
+    // data = data.filter(function(todo) {
+    //   return todo.item.replace(/ /g, '-') !== req.params.item
+    // })
+    // res.json(data)
+    // Set options
+    var options = {
+      sheetId: config.SHEET_ID,
+      rowId: req.body.id
+    };
+
+    // console.log(req)
+
+    // Delete row
+    smartsheet.sheets.deleteRow(options)
+      .then(function(results) {
+        console.log(results)
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   })
 }
