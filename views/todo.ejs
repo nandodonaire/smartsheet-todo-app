@@ -10,17 +10,14 @@
       <h1>To Do App</h1>
     </header>
     <div class="todo-table">
-      <h3>Add New Task</h3>
+      <h4>Add New Task</h4>
       <form id="new-task-form">
-        <!-- <input type="text" name="item" placeholder="Add new item..." required />
-        <button type="submit">Add Item</button> -->
             <div class="form-group">
               <label for="task-name-input">Task</label>
               <input type="text" class="form-control" id="task-name-input" aria-describedby="emailHelp" placeholder="Enter task" required>
             </div>
             <div class="form-group">
               <label for="task-status-input">Status</label>
-              <!-- <input type="text" class="form-control" id="task-status-input" placeholder="Enter status"> -->
                 <select class="form-control" name="todo[status]" id="task-status-input">
                   <option>Not Done</option>
                   <option>Done</option>
@@ -31,14 +28,7 @@
               <input type="date" class="form-control" id="task-duedate-input" placeholder="Enter due date">
             </div>
             <button type="submit" class="btn btn-primary">Add Task</button>
-          </form>
-      <!-- <ul>
-        <% for(let i=0; i < todos.length; i++) { %>
-          <li><%= todos[i].toDoText %></li>
-          <li><%= todos[i].status %></li>
-          <li><%= todos[i].dueDate %></li>
-        <% } %>
-      </ul> -->
+        </form>
       <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -50,26 +40,56 @@
           </tr>
         </thead>
         <tbody>
-          <!-- <% for(let i=0; i < todos.length; i++) { %>
-          <tr class='task-row'>
-            <td><%= todos[i].toDoText %></td>
-            <td><%= todos[i].status %></td>
-            <td><%= todos[i].dueDate %></td>
-            <td><button type="button" class="btn btn-warning action-button">Edit</button></td>
-            <td><button data-row-id="<%= todos[i].id %>" id='delete-button' type="button" class="btn btn-danger action-button">Delete</button></td>
-          </tr>
-          <% } %> -->
           <% todos.forEach(function(todo) { %>
           <tr class='task-row'>
             <td><%= todo.toDoText %></td>
             <td><%= todo.status %></td>
             <td><%= todo.dueDate %></td>
-            <td><button type="button" class="btn btn-warning action-button">Edit</button></td>
+            <td><button type="button" data-row-id="<%= todo.id %>" data-toggle="modal" data-target=".updateModal" class="btn btn-warning action-button update-button">Edit</button></td>
             <td><button data-row-id="<%= todo.id %>" id='delete-button' type="button" class="btn btn-danger action-button delete-button">Delete</button></td>
           </tr>
           <% }) %>
         </tbody>
       </table>
+      <% todos.forEach(function(todo) { %>
+      <!-- Update Task Modal -->
+        <div class="modal fade updateModal" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Update Task</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="update-task-form">
+                      <div class="form-group">
+                        <label for="task-name-input">Task</label>
+                        <input value="<%= todo.toDoText %>" type="text" class="form-control" id="task-name-update" aria-describedby="emailHelp" placeholder="Enter task" required>
+                      </div>
+                      <div class="form-group">
+                        <label for="task-status-input">Status</label>
+                          <select value="<%= todo.status %>" class="form-control" name="todo[status]" id="task-status-update">
+                            <option>Not Done</option>
+                            <option>Done</option>
+                          </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="task-duedate-input">Due Date</label>
+                        <input value="<%= todo.dueDate %>" type="date" class="form-control" id="task-duedate-update" placeholder="Enter due date">
+                      </div>
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }) %>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

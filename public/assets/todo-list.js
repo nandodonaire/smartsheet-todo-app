@@ -2,8 +2,6 @@ $(document).ready(function(){
 
   $('#new-task-form').on('submit', function(event){
       event.preventDefault()
-      // var item = $('form input');
-      // var todo = {item: item.val()};
       let toDoText = $('#task-name-input').val()
       let status = $('#task-status-input').val()
       let dueDate = $('#task-duedate-input').val()
@@ -23,7 +21,6 @@ $(document).ready(function(){
         url: '/todo',
         data: todo,
         success: function(data){
-          //do something with the data via front-end framework
           location.reload();
         }
       });
@@ -44,12 +41,9 @@ $(document).ready(function(){
       url: '/todo/' + rowId,
       data: todo,
       success: function(data){
-        //do something with the data via front-end framework
         location.reload();
       }
     });
-      // let rowId = $(this).data('row-id')
-      // console.log(rowId)
   });
 
 });

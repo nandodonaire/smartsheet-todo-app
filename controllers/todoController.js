@@ -32,7 +32,6 @@ module.exports = function (app) {
         let task = new ToDo (row.id, row.cells[0].value, row.cells[1].value, row.cells[2].value)
         sheetRows.push(task)
       })
-      // console.log(sheetRows);
       res.render('todo', {todos: sheetRows})
     })
     .catch(function(error) {
@@ -41,8 +40,6 @@ module.exports = function (app) {
   })
 
   app.post('/todo', urlencodedParser, function (req, res) {
-    // data.push(req.body)
-    // res.json(data)
     let row = [
       {
         "toTop": true,
@@ -68,7 +65,6 @@ module.exports = function (app) {
       }
       smartsheet.sheets.addRows(options)
         .then(function(newRow) {
-          // console.log(newRow)
           let task = new ToDo (newRow.result[0].id, newRow.result[0].cells[0].value, newRow.result[0].cells[1].value, newRow.result[0].cells[2].value)
           res.status(200).send(task)
         })
@@ -78,17 +74,11 @@ module.exports = function (app) {
     })
 
   app.delete('/todo/:item', urlencodedParser, function (req, res) {
-    // data = data.filter(function(todo) {
-    //   return todo.item.replace(/ /g, '-') !== req.params.item
-    // })
-    // res.json(data)
     // Set options
-    var options = {
+    let options = {
       sheetId: config.SHEET_ID,
       rowId: req.body.id
     };
-
-    // console.log(req)
 
     // Delete row
     smartsheet.sheets.deleteRow(options)
